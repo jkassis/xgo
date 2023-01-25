@@ -1,4 +1,4 @@
-FROM mysteriumnetwork/xgo:base
+FROM jkassis/xgo:base
 
 # Configure the root Go distribution and bootstrap based on it
 ENV GO_VERSION 1180

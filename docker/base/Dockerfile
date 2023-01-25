@@ -3,9 +3,7 @@
 #
 # Released under the MIT license.
 
-FROM ubuntu:20.04
-
-MAINTAINER Péter Szilágyi <peterke@gmail.com>
+FROM ubuntu:focal
 
 # Configure the Go environment, since it's not going to change
 ENV PATH   /usr/local/go/bin:$PATH
@@ -16,9 +14,14 @@ ADD fetch.sh /fetch.sh
 ENV FETCH /fetch.sh
 RUN chmod +x $FETCH
 
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    rm -rf /var/lib/apt/lists/*
+RUN apt-add-repository 'deb http://ports.ubuntu.com focal universe'
+
 # Make sure apt-get is up to date and dependent packages are installed
 RUN \
-  apt-get update && \
+  apt-get update -y && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y                                      \
     automake autogen build-essential ca-certificates                                     \
     gcc-9-arm-linux-gnueabi g++-9-arm-linux-gnueabi libc6-dev-armel-cross                \

@@ -16,7 +16,7 @@ docker run --rm \
     -e FLAG_LDFLAGS="-w -s" \
     -e FLAG_BUILDMODE=default \
     -e TARGETS="linux/amd64,darwin/amd64,windows/amd64" \
-    mysteriumnetwork/xgo:1.13.6 ./cmd/path/to/entrypoint
+    jkassis/xgo:1.19.5 ./cmd/path/to/entrypoint
 ```
 
 Also see and run ./test.sh to build test examples.
@@ -26,15 +26,15 @@ Also see and run ./test.sh to build test examples.
 If you make changes in docker/base you need to rebuild base image.
 
 ```
-docker build -t mysteriumnetwork/xgo:base -f ./docker/base/Dockerfile ./docker/base
-docker push mysteriumnetwork/xgo:base
+docker build -t jkassis/xgo:base -f ./docker/base/Dockerfile ./docker/base
+docker push jkassis/xgo:base
 ```
 
 If you add new go version only when build and push.
 
 Build new image.
 ```
-docker build -t mysteriumnetwork/xgo:1.13.6 -f ./docker/go-1.13.6/Dockerfile .
+docker build -t jkassis/xgo:1.19.5 -f ./docker/go-1.19.5/Dockerfile .
 ```
 
 Update and run tests.
@@ -44,5 +44,5 @@ Update and run tests.
 
 Push image
 ```
-docker push mysteriumnetwork/xgo:1.13.6
+docker push jkassis/xgo:1.19.5
 ```
